@@ -1,0 +1,44 @@
+{
+  "name": "netflix-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "20.5.1",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.15",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.1",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.19",
+    "mongodb": "^5.8.1",
+    "mongoose": "^7.4.4",
+    "next": "13.4.19",
+    "next-auth": "^4.23.1",
+    "next-connect": "^1.0.0",
+    "postcss": "8.4.28",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.4",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.10.1",
+    "stripe": "^13.2.0",
+    "swr": "^2.2.2",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6",
+    "uniqid": "^5.4.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/uniqid": "^5.3.2"
+  }
+}
