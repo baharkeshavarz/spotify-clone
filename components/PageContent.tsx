@@ -3,6 +3,7 @@
 import { Song } from '@/types';
 import React from 'react'
 import SongItem from './SongItem';
+import useOnPlay from '@/hooks/useOnPlay';
 
 interface PageContentProps {
     songs: Song[];
@@ -19,6 +20,7 @@ const PageContent:React.FC<PageContentProps> = ({
        </div>
     )
   }
+  const onPlay = useOnPlay(songs)
 
   return (
     <div className="grid
@@ -33,7 +35,7 @@ const PageContent:React.FC<PageContentProps> = ({
                       <SongItem 
                            key={song.id} 
                            data={song}
-                           onClick={(id: string) => {}} 
+                           onClick={(id: string) => onPlay(id)} 
                      />
        ))}
     </div>

@@ -3,6 +3,26 @@ import db from "@/lib/mongo/db";
 import Song from "@/lib/mongo/models/Song";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(request: NextRequest) {
+    const url = new URL(request.url)
+    const songId = url.searchParams.get("songId")
+  
+    let song = null;
+    let jsonResponse =  { status: "failed", song: null };
+    if (songId) {
+          await db.connect();
+          song = await Song.findOne({_id: songId});
+
+          jsonResponse = {
+              status: "success",
+              song: song
+             };
+
+    }
+ 
+    return NextResponse.json(jsonResponse);
+} 
+
 export async function POST(request: NextRequest) {
     const body = await request.json();
     const {

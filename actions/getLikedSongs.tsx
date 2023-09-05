@@ -21,14 +21,14 @@ const getLikedSongs = async () => {
   }
 
   let songs: Song[] = [];
-  songs = likedSongs!.map(song => {
+  songs = likedSongs.map(song => {
      return {
-         id: song.song_id[0]._id,
-         user_id: song.user_id,
-         author: song.song_id[0].author,
-         title: song.song_id[0].title,
-         song_path: song.song_id[0].song_path,
-         image_path: song.song_id[0].image_path,
+      id: song.song_id[0]._id,
+      user_id: song.user_id,
+      author: song.song_id[0].author,
+      title: song.song_id[0].title,
+      song_path: song.song_id[0].song_path,
+      image_path: song.song_id[0].image_path,
       }
    })
 

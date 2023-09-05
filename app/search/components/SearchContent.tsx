@@ -32,7 +32,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
                            onClick={(id: string) => {}} 
                        />
 
-                       <LikeButton songId={song._id}/>
+                       <LikeButton songId={song.id}/>
                      </div>
        ))}
     </div>
