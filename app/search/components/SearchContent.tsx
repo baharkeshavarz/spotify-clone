@@ -13,6 +13,8 @@ const SearchContent: React.FC<SearchContentProps> = ({
     songs
 }) => {
   
+  const onPlay = useOnPlay(songs)
+
   if (songs.length === 0) {
     return (
        <div className="flex w-full text-neutral-400">
@@ -21,7 +23,6 @@ const SearchContent: React.FC<SearchContentProps> = ({
     )
   }
 
-  const onPlay = useOnPlay(songs)
 
   return (
     <div className="flex flex-col px-6">

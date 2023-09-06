@@ -21,7 +21,7 @@ const LikedContent: React.FC<LikedContentProps> = ({songs}) => {
        if (!user) {
           router.replace("/")
        }
-   }, [user])
+   }, [user, router])
  
    if (songs.length === 0) {
     return (

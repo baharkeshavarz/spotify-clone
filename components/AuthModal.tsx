@@ -95,7 +95,7 @@ const AuthModal = () => {
       </Button>
       <hr className="mt-5 text-neutral-300"/>
       <div className="flex justify-center py-5 space-x-2">
-          <span> Don't have an account?</span><span onClick={onToggle} className="cursor-pointer">Sign up for Spotify</span>
+          <span> Don not have an account?</span><span onClick={onToggle} className="cursor-pointer">Sign up for Spotify</span>
       </div>
    </Modal>
   )

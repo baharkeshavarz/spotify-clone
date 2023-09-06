@@ -31,7 +31,7 @@ export const Player = () => {
     <div className="fixed bottom-0 bg-black w-full h-[80px] px-4 py-2">
             {/* add  key={song!._id}: to destroy this element, otherwise has conflict with others */}
            <PlayerContent
-                key={song!.id}
+                key={player.activeId}
                 song={song}
             />
     </div>

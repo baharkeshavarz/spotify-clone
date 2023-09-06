@@ -12,7 +12,8 @@ interface PageContentProps {
 const PageContent:React.FC<PageContentProps> = ({
     songs
 }) => {
-  
+  const onPlay = useOnPlay(songs)
+
   if (songs.length === 0) {
     return (
        <div className="mt-4 text-neutral-400">
@@ -20,7 +21,6 @@ const PageContent:React.FC<PageContentProps> = ({
        </div>
     )
   }
-  const onPlay = useOnPlay(songs)
 
   return (
     <div className="grid
