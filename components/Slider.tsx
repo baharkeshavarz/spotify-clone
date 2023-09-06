@@ -13,7 +13,7 @@ const Slider:React.FC<SliderProps> = ({
 }) => {
 
   const handleChange = (newValue: number[]) => {
-    onChange?.(newValue[0])
+      onChange?.(newValue[0])
   }  
   return (
         <RadixSlider.Root
