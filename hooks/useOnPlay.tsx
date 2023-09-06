@@ -4,18 +4,18 @@ import usePlayer from "./usePlayer";
 import { useUser } from "./useUser";
 
 const useOnPlay = (songs: Song[]) => {
-   const authModel = useAuthModal();
+   const authModal = useAuthModal();
    const player = usePlayer();
    const { user } = useUser();
 
    const onPlay = (id: string) => {
      if (!user) {
-        return authModel.onOpen();
+        return authModal.onOpen();
      }
 
      player.setId(id);
      // add all songs to play list(we are making a playlist here)
-     player.setIds(songs.map(song => song.id));
+     player.setIds(songs.map(song => song.id ));
    }
 
    return onPlay;

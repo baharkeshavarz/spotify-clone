@@ -20,17 +20,17 @@ const SidBarItem: React.FC<SidBarItemProps> = ({
     <Link 
         href={href}
         className={ twMerge(`
-          flex items-center
-          w-full h-auto font-medium text-md
-          cursor-pointer gap-x-4 py-1
-          hover:text-white
-          text-neutral-400
-          transition
+            flex items-center
+            w-full h-auto font-medium text-md
+            cursor-pointer gap-x-4 py-1
+            hover:text-white
+            text-neutral-400
+            transition
          `,
          active && "text-white")}
     >
       <Icon size={26} />
-      <p className="w-full truncate"> {label} </p>
+       <p className="w-full truncate"> {label} </p>
     </Link>
   )
 }

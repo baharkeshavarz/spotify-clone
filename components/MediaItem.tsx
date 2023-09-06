@@ -1,3 +1,4 @@
+import usePlayer from '@/hooks/usePlayer';
 import { Song } from '@/types'
 import Image from 'next/image';
 import React from 'react'
@@ -11,18 +12,20 @@ const MediaItem:React.FC<MediaItemProps> = ({
     data: song,
     onClick
 }) => {
-
+ const player = usePlayer();
  const handleClick = () => {
     if (onClick) {
        onClick(song.id);
     }
+
+    return player.setId(song.id);
  }
 
   return (
     <div
          onClick={handleClick}
-         className="flex items-center w-full p-2 gap-x-2">
-       <div className="relative min-h-[48px] min-w-[48px] ">
+         className="flex items-center w-full p-2 gap-x-2 cursor-pointer">
+       <div className="relative min-h-[48px] min-w-[48px]">
           <Image
             src={`/songs/images/${song.image_path}` || "/images/liked.png"}
             fill

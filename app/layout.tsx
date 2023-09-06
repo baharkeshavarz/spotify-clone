@@ -8,6 +8,7 @@ import ToastProvider from '@/providers/ToastProvider'
 import AuthProvider from '@/providers/AuthProvider'
 import getSongsByUserId from '@/actions/getSongsByUserId'
 import { Player } from '@/components/Player'
+import { Song } from '@/types'
 
 const font = Figtree({ subsets: ['latin'] })
 
@@ -29,7 +30,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const songs = await getSongsByUserId();
+  const songs= await getSongsByUserId();
   return (
     <html lang="en">
       <body className={font.className}>

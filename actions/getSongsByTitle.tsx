@@ -9,7 +9,7 @@ const getSongsByTitle = async (songTitle: string) => {
    if (!songTitle) {
       songs = await getSongs();
    } else {
-      songs = await Song.find({ title: {$regex: `.*${songTitle}.*`}});  // Like in mongodb
+      songs = await Song.find({ title: { $regex: new RegExp(songTitle, 'i') } });
    }
 
    return songs as any || [];

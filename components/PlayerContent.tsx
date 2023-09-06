@@ -82,19 +82,14 @@ export const PlayerContent: React.FC<PlayerContentProps> = ({
  }
 
  const toggleMute = () => {
-   if (volume === 0) {
-     setVoluem(1)
-   } else {
-     setVoluem(0)
-   }
+    volume === 0 ? setVoluem(1) : setVoluem(0)
  }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 h-full">
-           {/* {JSON.stringify(songUrl)} */}
           <div className="flex items-center justify-start w-full gap-x-4">
                 <MediaItem data={song}/>
-                <LikeButton songId={song._id} />
+                <LikeButton songId={song.id} />
           </div>
 
           {/* mobile view */}

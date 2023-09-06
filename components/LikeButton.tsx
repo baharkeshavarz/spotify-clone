@@ -16,12 +16,12 @@ const LikeButton: React.FC<LikedButtonProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const { user } = useUser();
-  const authModel = useAuthModal();
+  const authModal = useAuthModal();
   const router = useRouter();
 
   const handleLike = async () => {
     if (!user) {
-      return authModel.onOpen();
+      return authModal.onOpen();
     }
 
     if (isLiked) {

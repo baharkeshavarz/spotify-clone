@@ -1,23 +1,36 @@
 import getCurrentUser from "@/actions/getCurrentUser";
 import db from "@/lib/mongo/db";
-import Song from "@/lib/mongo/models/Song";
+import { default as SongSchm } from "@/lib/mongo/models/Song";
+import { Song } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     const url = new URL(request.url)
     const songId = url.searchParams.get("songId")
   
-    let song = null;
-    let jsonResponse =  { status: "failed", song: null };
+    let song: Song;
+    let songData = null;
+    let jsonResponse =  { status: "failed", song: {} };
+    
     if (songId) {
-          await db.connect();
-          song = await Song.findOne({_id: songId});
+         await db.connect();
+         songData = await SongSchm.findOne({_id: songId});
+       
+         if (!songData) return;
+      
+         song = {
+                id: songData._id,
+                user_id: songData.user_id,
+                author: songData.author,
+                title: songData.title,
+                song_path: songData.song_path,
+                image_path: songData.image_path,
+       };
 
-          jsonResponse = {
-              status: "success",
-              song: song
-             };
-
+        jsonResponse = {
+           status: "success",
+           song: song as Song,
+         };
     }
  
     return NextResponse.json(jsonResponse);
@@ -38,7 +51,7 @@ export async function POST(request: NextRequest) {
     const user = await getCurrentUser(user_id);
     if (user?._id) {
         await db.connect();
-        const song = new Song();
+        const song = new SongSchm();
         song.user_id = user._id;
         song.title = title;
         song.author = author;

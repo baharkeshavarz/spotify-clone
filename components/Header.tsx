@@ -12,6 +12,7 @@ import useAuthModal from '@/hooks/useAuthModal';
 import { useUser } from '@/hooks/useUser';
 import { signOut } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
+import useRegisterModal from '@/hooks/useRegisterModal';
 
 interface HeaderProps {
     children: React.ReactNode,
@@ -24,7 +25,8 @@ const Header: React.FC<HeaderProps> = ({
 
   const router = useRouter();
   let { user } = useUser();
-  const authModel = useAuthModal();
+  const authModal = useAuthModal();
+  const registerModal = useRegisterModal();
   
   const handleLogout = async () => {
     await signOut();
@@ -88,12 +90,12 @@ const Header: React.FC<HeaderProps> = ({
                     (
                       <div className="flex items-center">
                         <div>
-                           <Button className="bg-transparent text-neutral-300">
+                           <Button className="bg-transparent text-neutral-300" onClick={registerModal.onOpen}>
                              Sign up
                            </Button>   
                         </div>
                         <div>
-                        <Button className="bg-white px-6 py-2" onClick={authModel.onOpen}>
+                        <Button className="bg-white px-6 py-2" onClick={authModal.onOpen}>
                           Log in
                         </Button>
                         </div>

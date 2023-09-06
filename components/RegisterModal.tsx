@@ -10,14 +10,12 @@ import { signIn } from 'next-auth/react';
 import { toast } from "react-hot-toast";
 import useRegisterModal from '@/hooks/useRegisterModal';
 import Button from './Button';
-import { useUser } from '@/hooks/useUser';
-import { error } from 'console';
+import axios from 'axios';
 
-const AuthModel = () => {
+const RegisterModal = () => {
   const loginModal = useAuthModal();
   const registerModal = useRegisterModal();
   const router = useRouter();
-  const { setUserDetail } = useUser();
   const [ isLoading, setIsLoading ] = useState(false);
 
   const { 
@@ -35,43 +33,48 @@ const AuthModel = () => {
   
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    signIn('credentials', { 
-      ...data, 
-      redirect: false,
-    })
-    .then(async (callback) => {
-      setIsLoading(false);
-
-      if (!callback?.error) {
-        toast.success("Logged in");
-        setUserDetail({id: "test"});
-        router.refresh();
-        loginModal.onClose();
-      } else {
-        toast.error(callback.error);
-      }
-    });
-  }
+      axios.post("/api/register", data)
+        .then(() => {
+          toast.success("You registerd Successfully!")
+          registerModal.onClose();
+          loginModal.onOpen();
+        })
+        .catch((error) => {
+           toast.error("Something went wrong!")
+        })
+        .finally(() => {
+           setIsLoading(false)
+        })
+   }
 
   const onToggle = useCallback(() => {
-     loginModal.onClose();
-     registerModal.onOpen();
+     loginModal.onOpen();
+     registerModal.onClose();
   }, [loginModal, registerModal])
 
 
   const onChange = (open: boolean) => {
      if (!open) {
-       loginModal.onClose();
+          registerModal.onClose();
      }
   }
 
   return (
     <Modal
-         isOpen={loginModal.isOpen}
-         title="Log in to Spotify"
-         description="Login to your account"
+         isOpen={registerModal.isOpen}
+         title="Sign up in start listening"
+         description="Create your account"
          onChange={onChange}
        >
+
+       <Input
+          id="name"
+          placeholder="Full Name"
+          disabled={isLoading}
+          {...register('name', { })}
+          required
+      />
+
         <Input
           id="email"
           placeholder="Email or username"
@@ -80,7 +83,8 @@ const AuthModel = () => {
           required
       />
        {errors.email && <p role="alert" className="text-red-400">Insert the correct email.</p>}
-      <Input
+      
+       <Input
           id="password"
           placeholder="Password"
           type="password"
@@ -94,10 +98,14 @@ const AuthModel = () => {
          className="w-full"
          onClick={handleSubmit(onSubmit)}
          >
-        Log In
+        Sign up
       </Button>
+      <hr className="mt-5 text-neutral-300"/>
+      <div className="flex justify-center py-5 space-x-2">
+          <span> Already have an account?</span><span onClick={onToggle} className="cursor-pointer">Log in here.</span>
+      </div>
    </Modal>
   )
 }
 
-export default AuthModel
+export default RegisterModal

@@ -6,6 +6,7 @@ import React from 'react'
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 import MediaItem from './MediaItem';
+import useOnPlay from '@/hooks/useOnPlay';
 
 interface LibraryProps {
    songs: Song[];
@@ -14,13 +15,14 @@ interface LibraryProps {
 const Library: React.FC<LibraryProps> = ({
    songs
 }) => {
-  const authModel = useAuthModal();
+  const authModal = useAuthModal();
   const uploadModel = useUploadModel();
-
   const {user} = useUser();
+  const onPlay = useOnPlay(songs);
+
   const onClick = () => {
       if (!user) {
-        return authModel.onOpen();
+        return authModal.onOpen();
       }
 
       return uploadModel.onOpen();
@@ -45,7 +47,7 @@ const Library: React.FC<LibraryProps> = ({
                            <MediaItem
                                key={song.id}
                                data={song}
-                               onClick={() => {}}
+                               onClick={(id: string) => onPlay(id)}
                            />
            )}
         </div>
