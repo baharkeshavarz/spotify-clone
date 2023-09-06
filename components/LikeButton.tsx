@@ -54,7 +54,7 @@ const LikeButton: React.FC<LikedButtonProps> = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(`/api/liked-song?userId=${user.email}&songId=${songId}`);
-        if (response.data && response.data.liked) {
+        if (response.data && response.data.liked === true) {
            setIsLiked(response.data.liked);
         }
        } catch (error) {
@@ -68,7 +68,10 @@ const LikeButton: React.FC<LikedButtonProps> = ({
 
   return (
     <button onClick={handleLike} className="hover:opacity-75 transition">
-        <Icon size={26} color={isLiked ? '#22c55e' : 'white'}/>
+        <Icon
+            size={26} 
+            color={isLiked ? '#22c55e' : 'white'}
+        /> 
     </button>
   )
 }
