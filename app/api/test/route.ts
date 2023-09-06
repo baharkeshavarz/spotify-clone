@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 // import LikedSong from "@/lib/mongo/models/LikedSong";
 
 export async function GET(request: NextRequest) {
-    await db.connect();
+    // await db.connect();
     // const doc = new Song();
     // doc.title = "Lovers Songs";
     // doc.active = true;
@@ -14,14 +14,14 @@ export async function GET(request: NextRequest) {
     // doc.author = "The Lover"
     // doc.image_path="music7.jpeg"
 
-    const doc = new User();
-    doc.email = "bahar.keshavarzc@gmail.com";
-    doc.image ="myimage.jpg"
-    doc.password= await bcrypt.hash("123456", 12);
-    doc.first_name="Kobra";
-    doc.last_name="Keshavarz";
+    // const doc = new User();
+    // doc.email = "bahar.keshavarzc@gmail.com";
+    // doc.image ="myimage.jpg"
+    // doc.password= await bcrypt.hash("123456", 12);
+    // doc.first_name="Kobra";
+    // doc.last_name="Keshavarz";
 
-    const res = await doc.save(); 
+    // const res = await doc.save(); 
 
     // const doc = new LikedSong();
     // doc.user_id = "64e8b2aa5b98943be995a7f3";
